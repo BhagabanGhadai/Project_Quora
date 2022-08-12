@@ -1,7 +1,4 @@
-# Project_Quora
-# Quora-website
-
-## Project - Quora
+# Project - Quora
 
 ### Key points
 
