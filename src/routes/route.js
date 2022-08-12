@@ -10,23 +10,23 @@ const answerController = require('../controllers/answerController')
 
 router.post('/register',userController.registerUser)
 router.post('/login',userController.loginUser)
-router.get('/user/:userId/profile',middleware.userAuth,userController.getUserProfile)
-router.put('/user/:userId/profile',middleware.userAuth,userController.updateUserProfile)
+router.get('/user/:userId/profile',middleware.authentication,userController.getUserProfile)
+router.put('/user/:userId/profile',middleware.authentication,userController.updateUserProfile)
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Question APIs>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-router.post('/question',middleware.userAuth,questionController.createQuestion)
+router.post('/question',middleware.authentication,questionController.createQuestion)
 router.get('/questions',questionController.getAllQuestion)
 router.get('/questions/:questionId',questionController.getQuestionById)
-router.put('/questions/:questionId',middleware.userAuth,questionController.updateQuestion)
-router.delete('/questions/:questionId',middleware.userAuth,questionController.deleteQuestion)
+router.put('/questions/:questionId',middleware.authentication,questionController.updateQuestion)
+router.delete('/questions/:questionId',middleware.authentication,questionController.deleteQuestion)
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Answer APIs>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-router.post('/answer',middleware.userAuth,answerController.createAnswer)
+router.post('/answer',middleware.authentication,answerController.createAnswer)
 router.get('/questions/:questionId/answer',answerController.getAllAnswers)
-router.put('/answer/:answerId',middleware.userAuth,answerController.updateAnswer)
-router.delete('/answers/:answerId',middleware.userAuth,answerController.deleteAnswer)
+router.put('/answer/:answerId',middleware.authentication,answerController.updateAnswer)
+router.delete('/answers/:answerId',middleware.authentication,answerController.deleteAnswer)
 
 
 
