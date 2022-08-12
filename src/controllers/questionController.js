@@ -102,16 +102,12 @@ const getAllQuestion = async (req, res) => {
     let findQuestions = await questionModel
       .find(filterQuery).lean().sort({ createdAt: sortValue }).select({ createdAt: 0, updatedAt: 0, __v: 0 });
 
-    // return res.status(200).send({ status: true, message: "Questions List", data: findQuestions });
-
       for (i in findQuestions) {
         let answer = await answerModel
           .find({ questionId: findQuestions[i]._id })
           .select({ text: 1, answeredBy: 1 });
-        // console.log(answer)
 
         findQuestions[i].answers = answer;
-        // console.log(findQuestionsByTag[i])
       }
 
       if (findQuestions.length == 0) {
@@ -121,11 +117,8 @@ const getAllQuestion = async (req, res) => {
         });
       }
 
-     
-    return res.status(400).send({
-      status: false,
-      message: "No filters provided to search questions.",
-    });
+    return res.status(200).send({ status: true, message: "Questions List", data: findQuestions });
+   
   } catch (err) {
     return res.status(500).send({ Error: err.message });
   }
